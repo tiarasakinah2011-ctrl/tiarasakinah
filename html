@@ -1,0 +1,357 @@
+```html
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#dff1fb">
+<title>My World — Tiara</title>
+<style>
+:root{--blue:#cfeafa;--pink:#f6d8e7;--ink:#263746;--muted:#71808c;--paper:rgba(255,255,255,.76);--line:rgba(255,255,255,.9);--shadow:0 18px 50px #4669821f;--bg:#f6fbff;--surface:#fff}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--ink);background:radial-gradient(circle at 8% 8%,#c6e8f7a8,transparent 28%),radial-gradient(circle at 94% 30%,#f3cedfa8,transparent 28%),var(--bg);transition:.25s}
+body.dark{--bg:#18242e;--surface:#22313d;--paper:#243440e8;--ink:#f1f7fa;--muted:#b1c1cc;--line:#ffffff14;--shadow:0 18px 50px #0003;background:radial-gradient(circle at 8% 8%,#4d7e992e,transparent 28%),radial-gradient(circle at 94% 30%,#a05d8029,transparent 28%),var(--bg)}
+button{font:inherit;cursor:pointer}
+a{color:inherit}
+.shell{width:min(1100px,calc(100% - 32px));margin:auto}
+.topbar{display:flex;justify-content:space-between;align-items:center;padding:20px 0;gap:12px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;font-weight:850}
+.mark{width:42px;height:42px;border-radius:15px;display:grid;place-items:center;background:linear-gradient(135deg,var(--blue),var(--pink));font-size:22px}
+.brand small{display:block;font-size:11px;color:var(--muted);margin-top:3px}
+.actions{display:flex;gap:8px}
+.pill{border:1px solid var(--line);background:var(--paper);color:var(--ink);padding:10px 13px;border-radius:99px;font-size:12px;font-weight:750;text-decoration:none}
+.hero{display:grid;grid-template-columns:1.08fr .92fr;gap:22px;padding:16px 0 24px}
+.hero-copy,.art,.panel{background:var(--paper);border:1px solid var(--line);backdrop-filter:blur(16px);border-radius:30px;box-shadow:var(--shadow)}
+.hero-copy{padding:clamp(26px,5vw,52px);display:flex;flex-direction:column;justify-content:center}
+.eyebrow,.kicker{font-size:11px;font-weight:850;letter-spacing:1.5px;text-transform:uppercase;color:#6b9db8}
+.eyebrow:before{content:"";display:inline-block;width:22px;height:2px;background:#e9aeca;vertical-align:middle;margin-right:8px}
+h1{font-size:clamp(43px,6vw,72px);line-height:.98;letter-spacing:-3px;margin:18px 0}
+.grad{background:linear-gradient(100deg,#6eafcf,#d58eb2);color:transparent;background-clip:text}
+.lead{font-size:15px;line-height:1.8;color:var(--muted);margin:0}
+.buttons{display:flex;gap:10px;flex-wrap:wrap;margin-top:24px}
+.primary,.secondary{border:0;border-radius:14px;padding:13px 16px;font-size:12px;font-weight:850;text-decoration:none}
+.primary{background:linear-gradient(110deg,#b9e2f4,#f3c9de);color:#253746}
+.secondary{background:var(--surface);color:var(--ink);border:1px solid var(--line)}
+.note{font-size:11px;color:var(--muted);margin-top:23px}
+.art{min-height:390px;position:relative;display:grid;place-items:center;overflow:hidden;background:linear-gradient(145deg,#d7effb,#f8e1ed)}
+.blob{position:absolute;border-radius:50%;filter:blur(1px)}
+.b1{width:290px;height:290px;background:#b5e0f3;top:-70px;left:-65px}
+.b2{width:280px;height:280px;background:#f1bfd7;bottom:-75px;right:-55px}
+.orbit{position:absolute;width:290px;height:290px;border:1px solid #ffffffb5;border-radius:50%;transform:rotate(-25deg)}
+.profile-card{position:relative;text-align:center;padding:25px 20px;border:1px solid #ffffffcc;border-radius:27px;background:#ffffff99;backdrop-filter:blur(15px);width:min(76%,290px);box-shadow:0 24px 50px #6489a033;transform:rotate(2deg)}
+.avatar{width:105px;height:105px;border:5px solid #ffffffd9;border-radius:50%;display:grid;place-items:center;margin:auto auto 15px;background:linear-gradient(145deg,#bce4f5,#f5c9df);font-size:42px}
+.profile-card h2{font-size:21px;margin:0;color:#293d4a}
+.profile-card p{font-size:12px;line-height:1.7;color:#667986;margin:8px 0 0}
+.sticker{position:absolute;padding:11px 13px;border-radius:15px;background:#ffffffbf;border:1px solid white;box-shadow:0 10px 24px #7794a52a;font-size:12px;font-weight:800}
+.s1{top:43px;right:22px;transform:rotate(6deg)}
+.s2{bottom:38px;left:20px;transform:rotate(-7deg)}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:28px}
+.stat{padding:17px;border-radius:19px;background:var(--paper);border:1px solid var(--line)}
+.stat strong{display:block;font-size:17px}
+.stat span{display:block;font-size:11px;color:var(--muted);margin-top:5px}
+section.content{padding:22px 0 14px;scroll-margin-top:12px}
+.heading{margin-bottom:17px}
+.heading h2{font-size:clamp(25px,4vw,34px);letter-spacing:-1px;margin:7px 0}
+.desc{font-size:13px;color:var(--muted);line-height:1.7;margin:0}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.panel{padding:22px;min-width:0}
+.panel h3{font-size:16px;margin:0 0 10px}
+.panel p{font-size:13px;line-height:1.8;color:var(--muted);margin:0}
+.intro{display:flex;align-items:center;gap:13px;margin-bottom:15px}
+.mini{width:55px;height:55px;border-radius:18px;display:grid;place-items:center;background:linear-gradient(135deg,var(--blue),var(--pink));font-size:26px}
+.intro h3{margin:0 0 4px}
+.intro small{color:var(--muted)}
+.tags{display:flex;flex-wrap:wrap;gap:7px;margin-top:15px}
+.tag{padding:8px 10px;border-radius:99px;background:linear-gradient(120deg,#d9f0fb,#fbe6f0);color:#496678;font-size:11px;font-weight:800}
+.facts{display:grid;gap:10px}
+.fact{display:flex;justify-content:space-between;gap:12px;padding:10px 0;border-bottom:1px solid var(--line);font-size:12px}
+.fact:last-child{border:0}
+.fact span{color:var(--muted);flex-shrink:0}
+.fact strong{text-align:right}
+.faves{display:grid;grid-template-columns:repeat(2,1fr);gap:11px}
+.favorite{padding:17px;border-radius:19px;background:linear-gradient(135deg,#d3effac9,#fae1edc9);color:#334b5b;min-height:125px}
+.favorite .emoji{font-size:24px}
+.favorite h3{font-size:13px;margin:10px 0 5px}
+.favorite p{font-size:12px;line-height:1.65;color:#637786}
+.music-list{display:grid;gap:9px}
+.music-row{display:flex;align-items:center;gap:11px;padding:11px;border-radius:15px;background:var(--surface);border:1px solid var(--line)}
+.music-icon{width:42px;height:42px;flex:0 0 42px;border-radius:13px;display:grid;place-items:center;background:linear-gradient(135deg,var(--blue),var(--pink));font-size:19px}
+.music-meta strong{display:block;font-size:12px}
+.music-meta span{display:block;font-size:11px;color:var(--muted);margin-top:4px}
+.dreams{display:grid;grid-template-columns:repeat(3,1fr);gap:11px}
+.dream{padding:18px;border-radius:19px;background:var(--paper);border:1px solid var(--line)}
+.dream .emoji{font-size:24px}
+.dream h3{font-size:13px;margin:10px 0 6px}
+.dream p{font-size:12px;line-height:1.7;color:var(--muted);margin:0}
+.crush{background:linear-gradient(125deg,#dff2fb,#fbe5ef);color:#344c5b}
+.crush p{color:#617988}
+.quote{background:linear-gradient(120deg,#d8effa,#f8dfeb);color:#314959;padding:27px;border-radius:24px}
+.quote-mark{font-size:40px;color:#8ab8d0;line-height:1}
+.quote blockquote{font-size:clamp(19px,3vw,26px);font-weight:850;line-height:1.5;margin:6px 0 18px}
+.quote-foot{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.quote-foot span{font-size:11px;color:#607c8d}
+.quote-foot button{border:0;border-radius:11px;background:#ffffffc4;color:#344b59;padding:10px 12px;font-weight:850;font-size:11px}
+.upload{display:inline-flex;align-items:center;border:1px solid var(--line);background:var(--paper);color:var(--ink);padding:10px 13px;border-radius:12px;font-size:12px;font-weight:800;cursor:pointer}
+#photoInput{display:none}
+.gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.empty{grid-column:1/-1;text-align:center;padding:30px 15px;border:1.5px dashed #a8cddd;border-radius:21px;background:var(--paper)}
+.empty div{font-size:30px}
+.empty h3{margin:10px 0 6px}
+.empty p{font-size:12px;line-height:1.7;color:var(--muted);max-width:350px;margin:auto}
+.tile{position:relative;aspect-ratio:1/1.05;border-radius:16px;overflow:hidden;border:1px solid var(--line)}
+.tile img{width:100%;height:100%;object-fit:cover;display:block}
+.tile button{position:absolute;top:6px;right:6px;width:29px;height:29px;border:0;border-radius:50%;background:#ffffffdf;color:#243744;font-size:18px}
+footer{margin:38px 0 22px;padding:22px 0;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:12px;color:var(--muted);font-size:11px;line-height:1.7}
+footer strong{color:var(--ink)}
+.toast{position:fixed;z-index:20;bottom:20px;left:50%;transform:translate(-50%,15px);opacity:0;pointer-events:none;background:#263b49;color:#fff;border-radius:99px;padding:12px 16px;font-size:12px;font-weight:750;transition:.2s;text-align:center;max-width:calc(100% - 25px)}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+@media(max-width:740px){
+.shell{width:calc(100% - 24px)}
+.topbar{padding:14px 0}
+.hero{grid-template-columns:1fr;gap:13px;padding-top:8px}
+.hero-copy{padding:29px 23px}
+.art{min-height:330px}
+.stats{gap:7px;margin-bottom:18px}
+.stat{padding:13px 10px}
+.stat strong{font-size:14px}
+.stat span{font-size:10px}
+.two{grid-template-columns:1fr}
+.panel{padding:19px}
+.dreams{grid-template-columns:1fr}
+.heading h2{margin-bottom:5px}
+footer{flex-direction:column}
+.gallery-grid{grid-template-columns:repeat(3,1fr)}
+}
+@media(max-width:390px){
+.brand{font-size:13px}
+.mark{width:36px;height:36px}
+.pill{padding:9px;font-size:11px}
+.hero-copy{padding:24px 19px}
+h1{font-size:45px}
+.art{min-height:300px}
+.s1{right:12px}
+.s2{left:12px}
+.gallery-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media(prefers-reduced-motion:reduce){
+html{scroll-behavior:auto}
+*,*:before,*:after{transition:none!important}
+}
+</style>
+</head>
+<body>
+<div class="shell">
+<header class="topbar">
+<a class="brand" href="#home"><span class="mark">♡</span><span>my world <small>A little space for Tiara</small></span></a>
+<div class="actions"><button class="pill" id="themeBtn">☾ Tema</button><a class="pill" href="#about">Kenalan yuk ↗</a></div>
+</header>
+<main id="home">
+<section class="hero">
+<div class="hero-copy">
+<span class="eyebrow">Welcome to my little universe</span>
+<h1>Hi, I'm<br><span class="grad">Tiara.</span></h1>
+<p class="lead">Pecinta matcha, tukang yapping, dan manusia yang punya banyak cerita kecil. Selamat datang di sudut kecil dunia aku. ♡</p>
+<div class="buttons"><a class="primary" href="#about">Kenalan sama aku ↗</a><a class="secondary" href="#favorites">Lihat favoritku</a></div>
+<div class="note">Currently powered by matcha and random thoughts.</div>
+</div>
+<div class="art" aria-label="Ilustrasi warna pastel">
+<div class="blob b1"></div><div class="blob b2"></div><div class="orbit"></div>
+<div class="profile-card"><div class="avatar">🧋</div><h2>Tiara Sakinah</h2><p>matcha enthusiast<br>professional yapper ♡</p></div>
+<div class="sticker s1">🍵 matcha time</div><div class="sticker s2">made of daydreams ✨</div>
+</div>
+</section>
+
+<section class="stats">
+<div class="stat"><strong>15 tahun</strong><span>and still figuring it out</span></div>
+<div class="stat"><strong>Matcha 🍵</strong><span>always a good idea</span></div>
+<div class="stat"><strong>Big dreams</strong><span>one step at a time</span></div>
+</section>
+
+<section class="content" id="about">
+<div class="heading"><div class="kicker">01 / Get to know me</div><h2>A little about me</h2><p class="desc">Beberapa hal kecil tentang orang di balik website ini.</p></div>
+<div class="two">
+<article class="panel">
+<div class="intro"><div class="mini">🎀</div><div><h3>It's me, Tiara!</h3><small>Just being myself, always.</small></div></div>
+<p>Aku suka matcha, aku suka yapping, dan aku suka dia banget. Kadang bisa ngobrol panjang tentang hal random, kadang cuma pengin menikmati minuman manis sambil dengerin lagu favorit.</p>
+<div class="tags"><span class="tag">🍵 Matcha lover</span><span class="tag">💬 Suka yapping</span><span class="tag">🎧 Music person</span><span class="tag">🌷 Soft pastel vibes</span></div>
+</article>
+<article class="panel">
+<h3>My little details</h3>
+<div class="facts">
+<div class="fact"><span>Nama lengkap</span><strong>Tiara Sakinah Salsabilla</strong></div>
+<div class="fact"><span>Panggilan</span><strong>Tiara</strong></div>
+<div class="fact"><span>Umur</span><strong>15 tahun</strong></div>
+<div class="fact"><span>Sekolah</span><strong>SMAN 19 Bandung</strong></div>
+<div class="fact"><span>Hobi</span><strong>Yapping & ikut mood ✨</strong></div>
+</div>
+</article>
+</div>
+</section>
+
+<section class="content" id="favorites">
+<div class="heading"><div class="kicker">02 / Things I love</div><h2>Current favorites</h2><p class="desc">Hal-hal yang bisa bikin hari biasa terasa lebih seru.</p></div>
+<div class="faves">
+<article class="favorite"><div class="emoji">🍜</div><h3>Comfort food</h3><p>Mie ayam, dimsum mentai, dan nasi goreng. Susah disuruh pilih satu.</p></article>
+<article class="favorite"><div class="emoji">🍵</div><h3>Sweet drinks</h3><p>Matcha dan pokoknya minuman yang manis-manis.</p></article>
+<article class="favorite"><div class="emoji">🎧</div><h3>On repeat</h3><p>The Weeknd, LANY kalau lagi cocok sama mood, Taylor Swift, dan Ariana Grande.</p></article>
+<article class="favorite"><div class="emoji">🩵</div><h3>My colors</h3><p>Pastel blue bertemu pastel pink. Kalem, manis, dan dreamy.</p></article>
+</div>
+</section>
+
+<section class="content" id="music">
+<div class="heading"><div class="kicker">03 / Soundtrack</div><h2>Songs & moods</h2><p class="desc">Musik yang nemenin berbagai suasana hati.</p></div>
+<div class="two">
+<article class="panel">
+<h3>My music rotation 🎶</h3>
+<div class="music-list">
+<div class="music-row"><div class="music-icon">🌃</div><div class="music-meta"><strong>The Weeknd</strong><span>late-night kind of mood</span></div></div>
+<div class="music-row"><div class="music-icon">🌙</div><div class="music-meta"><strong>LANY</strong><span>tergantung mood, ya kan</span></div></div>
+<div class="music-row"><div class="music-icon">🪩</div><div class="music-meta"><strong>Taylor Swift</strong><span>for every chapter</span></div></div>
+<div class="music-row"><div class="music-icon">☁️</div><div class="music-meta"><strong>Ariana Grande</strong><span>soft vocals, good vibes</span></div></div>
+</div>
+</article>
+<article class="panel">
+<h3>My current vibe</h3>
+<p>Bayangin sore yang adem, minuman matcha di tangan, playlist favorit nyala, terus ngobrolin semua hal yang tiba-tiba kepikiran. That's the vibe.</p>
+<div class="tags"><span class="tag">☁️ Chill</span><span class="tag">💭 Daydreaming</span><span class="tag">💗 A little dramatic</span></div>
+</article>
+</div>
+</section>
+
+<section class="content" id="dreams">
+<div class="heading"><div class="kicker">04 / Future me</div><h2>Dreams I'm keeping</h2><p class="desc">Pelan-pelan, tapi tetap menuju hal-hal baik.</p></div>
+<div class="dreams">
+<article class="dream"><div class="emoji">🌟</div><h3>Menjadi orang sukses</h3><p>Terus belajar, berkembang, dan berani mencoba hal baru.</p></article>
+<article class="dream"><div class="emoji">🏡</div><h3>Membahagiakan orang tua</h3><p>Semoga suatu hari bisa membalas kasih sayang mereka dengan hal-hal baik.</p></article>
+<article class="dream"><div class="emoji">💐</div><h3>Membanggakan keluarga</h3><p>Membuat orang tua bangga lewat usaha dan pencapaian sendiri.</p></article>
+</div>
+</section>
+
+<section class="content" id="special">
+<div class="heading"><div class="kicker">05 / A little secret</div><h2>Someone on my mind</h2><p class="desc">Ada satu nama yang bikin cerita jadi lebih berwarna.</p></div>
+<article class="panel crush">
+<div class="intro"><div class="mini">🫶🏻</div><div><h3>Abian Alif Alqodri</h3><small>the person I admire ♡</small></div></div>
+<p>Dia itu lucu, gemes, ganteng banget—bang, aku meleleh 😭 Terus nyebelin, tengil, suka ngeledek, dan dramatis banget. Gemasnya tuh nggak ada obat. Satu lagi, katanya dia suka aku juga ✌🏻</p>
+</article>
+</section>
+
+<section class="content" id="quote">
+<div class="heading"><div class="kicker">06 / Words to live by</div><h2>My life motto</h2></div>
+<div class="quote">
+<div class="quote-mark">“</div>
+<blockquote id="quoteText">Sukses berawal dari mimpi. Oleh karena itu, mari kita perbanyak tidur.</blockquote>
+<div class="quote-foot"><span>— Tiara's very serious life advice (katanya)</span><button id="copyQuote">Salin quotes ↗</button></div>
+</div>
+</section>
+
+<section class="content" id="gallery">
+<div class="heading"><div class="kicker">07 / Little memories</div><h2>My gallery</h2><p class="desc">Tambahkan foto favoritmu. Foto yang ditambahkan hanya tampil di browser/perangkat ini, tidak otomatis terunggah ke internet.</p></div>
+<label class="upload" for="photoInput">＋ Tambah foto</label>
+<input id="photoInput" type="file" accept="image/*" multiple>
+<div class="gallery-grid" id="galleryGrid">
+<div class="empty"><div>📷</div><h3>Belum ada foto nih</h3><p>Tambahkan foto favoritmu lewat tombol “Tambah foto”. Kamu bisa mulai kapan aja!</p></div>
+</div>
+</section>
+</main>
+
+<footer>
+<div><strong>My World ♡</strong><br>A little corner of the internet made by Tiara.</div>
+<div>Made with pastel blue, pastel pink, and a little bit of yapping.</div>
+</footer>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+const $=s=>document.querySelector(s);
+
+function toast(msg){
+const t=$("#toast");
+t.textContent=msg;
+t.classList.add("show");
+clearTimeout(toast.timer);
+toast.timer=setTimeout(()=>t.classList.remove("show"),2300);
+}
+
+$("#themeBtn").addEventListener("click",()=>{
+document.body.classList.toggle("dark");
+const d=document.body.classList.contains("dark");
+$("#themeBtn").textContent=d?"☀ Tema":"☾ Tema";
+document.querySelector('meta[name="theme-color"]').content=d?"#18242e":"#dff1fb";
+toast(d?"Dark mode diaktifkan":"Pastel mode diaktifkan");
+});
+
+$("#copyQuote").addEventListener("click",async()=>{
+const q=$("#quoteText").textContent.trim();
+try{
+await navigator.clipboard.writeText(q);
+toast("Quotes berhasil disalin ♡");
+}catch(e){
+const a=document.createElement("textarea");
+a.value=q;
+a.style.position="fixed";
+a.style.opacity="0";
+document.body.appendChild(a);
+a.select();
+const ok=document.execCommand("copy");
+a.remove();
+toast(ok?"Quotes berhasil disalin ♡":"Silakan salin quotes secara manual");
+}
+});
+
+const input=$("#photoInput");
+const grid=$("#galleryGrid");
+
+input.addEventListener("change",()=>{
+const files=Array.from(input.files||[]).filter(f=>f.type.startsWith("image/"));
+if(!files.length)return;
+
+grid.querySelector(".empty")?.remove();
+
+files.forEach(file=>{
+const url=URL.createObjectURL(file);
+const tile=document.createElement("div");
+const img=document.createElement("img");
+const del=document.createElement("button");
+
+tile.className="tile";
+img.src=url;
+img.alt=file.name||"Foto galeri Tiara";
+del.type="button";
+del.textContent="×";
+del.setAttribute("aria-label","Hapus foto");
+
+del.addEventListener("click",()=>{
+URL.revokeObjectURL(url);
+tile.remove();
+
+if(!grid.querySelector(".tile")){
+grid.innerHTML='<div class="empty"><div>📷</div><h3>Belum ada foto nih</h3><p>Tambahkan foto favoritmu lewat tombol “Tambah foto”. Kamu bisa mulai kapan aja!</p></div>';
+}
+});
+
+tile.append(img,del);
+grid.append(tile);
+});
+
+input.value="";
+toast(files.length===1?"Foto ditambahkan ♡":files.length+" foto ditambahkan ♡");
+});
+
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+a.addEventListener("click",e=>{
+const target=document.querySelector(a.getAttribute("href"));
+if(target){
+e.preventDefault();
+target.scrollIntoView({
+behavior:matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth"
+});
+}
+});
+});
+</script>
+</body>
+</html>
+```
+  
